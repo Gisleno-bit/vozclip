@@ -1,0 +1,332 @@
+VOZCLIP ESCRITOR
+================
+Editor de guiones que habla. Para escribir sin ver la pantalla.
+
+
+PARA EMPEZAR
+------------
+Si tienes VozClip.exe: haz doble clic en el.
+
+Si tienes la carpeta del codigo (con INSTALAR.bat dentro): haz doble
+clic en INSTALAR.bat. Lo instala todo el solo, te lo cuenta en voz alta,
+y te deja un acceso directo "VozClip" en el escritorio. Tarda unos
+minutos la primera vez. Despues, abre VozClip desde ese acceso directo.
+
+Se abre una ventana y el programa te saluda en voz alta:
+"VozClip Escritor en marcha".
+
+No hace falta instalar nada mas. Ni Python, ni librerias, ni voces.
+Usa las voces que ya trae Windows.
+
+
+DICTAR EN VEZ DE TECLEAR
+------------------------
+Pulsa F1, espera el pitido, y habla. Vuelve a pulsar F1 al terminar.
+El texto aparece escrito donde tengas el cursor.
+
+Mientras hablas puedes decir los signos de puntuacion:
+  "coma"                     ->  ,
+  "punto"                    ->  .
+  "punto y aparte"           ->  . y linea nueva
+  "dos puntos"               ->  :
+  "raya"                     ->  guion de dialogo
+  "abrir interrogacion"      ->  el de abrir
+  "cerrar interrogacion"     ->  el de cerrar
+  "abre parentesis"          ->  (
+  "nueva linea"              ->  linea nueva
+
+Ejemplo. Si dices:
+  "raya no me lo creo punto"
+Se escribe:
+  -No me lo creo.
+
+El dictado funciona SIN INTERNET, pero la primera vez hay que descargar
+el modelo de voz en espanol (39 megas). Es lo primero que conviene hacer.
+
+
+EL DICTADO YA VIENE INSTALADO
+-----------------------------
+No tienes que hacer nada. El modelo de voz en espanol viene dentro de la
+descarga, en la carpeta "modelos", junto al programa. Pulsa F1 y dicta.
+
+SI EL DICTADO NO ARRANCA
+------------------------
+Puede que hayas descargado una version sin modelo, o que la carpeta
+"modelos" se haya quedado atras al copiar el programa de sitio.
+
+Haz doble clic en instalar_modelos.bat, que esta en esta misma carpeta.
+No hay que escribir nada: te va contando en voz alta lo que hace
+("descargando", "descarga terminada", "modelo instalado"), y al terminar
+suenan dos notas ascendentes si ha ido bien o una grave si ha fallado,
+diciendote el motivo.
+
+Solo esa vez necesita internet. Despues el dictado funciona sin conexion.
+
+
+SI DICE "EL MODELO NO SE HA PODIDO CARGAR" O "FAILED TO CREATE A MODEL"
+-------------------------------------------------------------------------
+El modelo esta, pero esta en una carpeta cuyo nombre lleva tilde o enye,
+por ejemplo C:\Users\Julian con tilde. La libreria de reconocimiento no
+puede abrir esas rutas.
+
+VozClip lo resuelve solo desde esta version: usa el nombre corto de
+Windows o hace una copia del modelo en C:\Users\Public\VozClip\modelos,
+que no tiene acentos. Si aun asi lo dice, haz doble clic en
+instalar_modelos.bat: lo deja directamente en esa carpeta.
+
+Y si lo bajas a mano, ponlo ahi y no en tu carpeta de usuario:
+  C:\Users\Public\VozClip\modelos\vosk-model-small-es-0.42
+
+
+DESCARGAR EL MODELO A MANO
+--------------------------
+Si el .bat no funciona (antivirus, proxy, PowerShell bloqueado), bajalo tu:
+
+  https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
+
+Son 39,8 megas. Descomprime el ZIP: dentro hay una carpeta llamada
+vosk-model-small-es-0.42. Ponla en una carpeta llamada "modelos" junto a
+VozClip.exe, de forma que quede asi:
+
+  VozClip.exe
+  modelos\vosk-model-small-es-0.42\am\final.mdl
+  modelos\vosk-model-small-es-0.42\conf\
+  ...
+
+Tambien vale ponerla en:  C:\Users\Public\VozClip\modelos
+(tecla Windows + R, escribe C:\Users\Public\VozClip y pulsa Intro)
+
+IMPORTANTE: no la pongas dentro de tu carpeta de usuario si tu nombre
+lleva tilde o enye. La libreria de voz no puede abrir esas rutas.
+
+Para comprobar que ha quedado bien, abre VozClip-Diagnostico.exe: te dice
+donde ha buscado y si lo ha encontrado.
+
+Si la direccion diera error, la lista completa esta en:
+  https://alphacephei.com/vosk/models
+Busca "vosk-model-small-es".
+
+IMPORTANTE: si mueves VozClip.exe a otra carpeta, llevate tambien la
+carpeta "modelos". El programa la busca a su lado.
+
+
+LOS SEIS DE TODOS LOS DIAS
+--------------------------
+Estan en las teclas de funcion: una sola tecla, sin modificadores.
+
+F1 ... grabar: empezar o parar el dictado
+F2 ... nuevo parrafo
+F3 ... nuevo dialogo
+F4 ... leer el ultimo parrafo
+F5 ... leer el texto entero
+F9 ... corregir una palabra por voz
+
+
+CORREGIR UNA PALABRA SIN VERLA
+------------------------------
+Has dictado "come alpiste mientras baila" pero querias decir "rueda".
+No hace falta repetirlo todo. Con la misma tecla con la que dictaste:
+
+  1. Pulsa F1.
+  2. Di:  cambia alpiste por rueda
+  3. Pulsa F1 otra vez.
+  4. Te confirma: "He cambiado alpiste por rueda". Y ya esta.
+
+LO IMPORTANTE: empieza por "cambia" (o "borra", "sustituye", "corrige").
+Sin esa palabra delante, "alpiste por rueda" se escribe como texto, porque
+el programa no puede distinguirlo de una frase normal.
+
+Tambien tienes F9, que hace lo mismo pero con el modo de correccion
+abierto: pulsas, dices el cambio y te CALLAS. Al segundo y medio de
+silencio se aplica solo, sin volver a pulsar nada. (Si prefieres pulsar
+F9 otra vez, tambien vale.) Y admite mas cosas:
+
+Tres segundos. Solo cambia esa palabra: el resto del parrafo, las comas
+y las sangrias se quedan como estaban. Si la palabra empezaba en
+mayuscula, la nueva tambien.
+
+Tambien puedes decir:
+  cambia no me lo creo por no lo creo ... frases enteras
+  borra ademas ........................... quitar una palabra
+  cancela ................................ dejarlo como estaba (o Escape)
+  deshacer ............................... anular el ultimo cambio
+
+Si la palabra que salio mal es tan rara que no sabes ni como se dice:
+  leelo .................................. te lee el parrafo numerando
+                                           cada palabra: "1, aquella.
+                                           2, noche. 3, no..." y pregunta
+                                           cual. Dices "dos", te lee
+                                           "noche" y te pide la correcta.
+                                           La dictas y ya esta.
+  la tres por cosa ....................... o todo de una vez, por numero
+  del tres al cinco ...................... o un tramo entero
+
+Si prefieres que F9 SIEMPRE numere primero, sin tener que decir "leelo",
+pon "modo": "numerado" dentro de "correccion" en el config.json.
+
+
+QUE VERSION TENGO
+-----------------
+Al arrancar, VozClip dice su version: "VozClip Escritor dos punto diez en
+marcha". Tambien Control + Alt + W la dice. Si alguien te arregla algo y
+al arrancar oyes la misma version de antes, el arreglo no ha llegado a
+tu ordenador: hay que instalar la version nueva.
+
+Si la palabra aparece varias veces, te lo dice ("casa aparece 2 veces:
+1, la casa grande. 2, la casa pequena. Cual?") y respondes el numero.
+
+Siempre actua sobre el parrafo donde esta el cursor, o el ultimo que
+escribiste. En Word o en otro programa, sobre la linea del cursor.
+
+Si prefieres que F9 numere SIEMPRE, sin tener que decir "leelo":
+en el config.json pon  "correccion": { "modo": "numerado" }.
+Entonces F9 lee el parrafo numerado, pregunta cual, te lee la palabra
+elegida y te pide la nueva. Tres pasos, pero nunca hay que pronunciar
+la palabra que salio mal.
+
+
+QUE VERSION TENGO
+-----------------
+Al abrirse, VozClip dice su version: "VozClip Escritor dos punto diez
+en marcha". Tambien la dice Control + Alt + W (donde estoy). Si te
+dicen que algo esta arreglado y a ti no te funciona, comprueba primero
+que la version que oyes es la nueva.
+
+En la ventana son los cinco botones azules con borde blanco. Guardar
+esta en verde, e importar y exportar en naranja.
+
+Y ademas:
+Control + Alt + H .... te lee la lista completa de atajos
+Control + Alt + O .... abrir un archivo
+Control + Alt + D .... guardar
+Control + Alt + Q .... cerrar (guarda antes)
+
+Las flechas arriba y abajo mueven el cursor y te dicen la linea nueva.
+El resto de atajos estan en GUIA_RAPIDA.txt y en Control + Alt + H.
+
+
+TU FORMATO, EL DE VERDAD
+------------------------
+VozClip arranca ya configurado con tu perfil: alto contraste, letra de
+20 puntos, velocidad 2 y tu plantilla de novela.
+
+Esa plantilla lleva tu formato:
+  Dialogos: raya, sangria izquierda 0,63 con francesa 0,63,
+            posterior 18 puntos, interlineado minimo.
+  Narrador: primera linea 1,25, posterior 18 puntos, justificado.
+
+En el editor las sangrias son espacios aproximados, porque un archivo
+de texto no tiene centimetros. Para el formato exacto tienes dos botones:
+  Control + Alt + Mayusculas + E ... exporta a Word (.docx)
+  Control + Alt + Mayusculas + L ... exporta a LibreOffice (.odt)
+Los dos aplican los centimetros y los puntos de verdad. El .odt es el
+formato propio de LibreOffice: se abre sin conversion ninguna.
+
+F3 abre un dialogo: dos espacios de sangria y la raya, pegada, con el
+cursor justo detras para empezar a escribir o dictar. Nada mas.
+
+Si algo se descoloca y no puedes verlo para arreglarlo, la accion
+"perfil Julian" devuelve todo a como estaba.
+
+
+CONFIGURACION QUE PUEDES LLEVARTE
+---------------------------------
+Control + Alt + Y guarda tus ajustes en un archivo.
+Control + Alt + U carga uno guardado.
+
+Sirve para pasar tu configuracion a otro ordenador, o para volver a un
+estado que te funcionaba.
+
+
+SI VES POCO O TE CANSA LA VISTA
+-------------------------------
+Control + Alt + C ..... cambia entre tres temas: oscuro, alto contraste
+                        (negro y amarillo puros) y claro.
+Control + Alt + mas ... letra mas grande, hasta 42 puntos.
+Control + Alt + menos . letra mas pequena.
+Control + Alt + Z ..... modo solo voz: la ventana se reduce al minimo y
+                        todo sigue funcionando por teclado y por voz.
+
+El cursor no parpadea a proposito: un elemento moviendose todo el rato
+cansa la vista en sesiones largas.
+
+
+TRABAJAR CON WORD U OTROS PROGRAMAS
+-----------------------------------
+Control + Alt + M cambia al modo aplicacion externa. VozClip te dice en
+que ventana va a escribir, y a partir de ahi las plantillas y el dictado
+van directos a Word, al navegador o a donde estes.
+
+Control + Alt + E exporta el documento entero: al portapapeles si estas
+en el editor propio, o directamente a la aplicacion si estas en modo
+externo.
+
+Funciona con Bloc de notas, WordPad, Notepad++, Visual Studio Code, Word,
+LibreOffice, Outlook, Google Docs en el navegador, Excel y Calc.
+En terminales el texto se teclea en vez de pegarse. En PDF protegidos no
+se puede hacer nada: no permiten copiar.
+
+
+ABRIR ARCHIVOS QUE YA TIENES
+----------------------------
+Control + Alt + O abre archivos de texto (.txt, .md), texto enriquecido
+(.rtf) y Word (.docx). Las sangrias se conservan: un guion importado
+mantiene sus margenes intactos.
+
+
+DONDE SE GUARDAN LOS GUIONES
+----------------------------
+En tu carpeta Documentos, dentro de una carpeta llamada VozClip.
+Los archivos llevan la fecha y la hora en el nombre.
+
+
+SI EL DICTADO NO FUNCIONA
+-------------------------
+Abre VozClip-Diagnostico.exe. Te dira si falta el modelo de voz, si no
+detecta ningun microfono, o cual es el problema.
+
+VozClip sigue funcionando entero aunque el dictado no este disponible:
+solo pierdes esa funcion.
+
+
+SI NO OYES NADA O NO SE ABRE
+----------------------------
+Haz doble clic en VozClip-Diagnostico.exe.
+
+Ese programa comprueba una a una todas las piezas, te dice cual falla,
+enumera las voces instaladas y emite una frase de prueba.
+
+Ademas, cada vez que arranca VozClip deja un registro aqui:
+  %APPDATA%\VozClip\ultimo_arranque.log
+(Para llegar: tecla Windows + R, escribe %APPDATA%\VozClip y pulsa Intro.)
+
+
+PARA QUE ARRANQUE SOLO AL ENCENDER EL ORDENADOR
+-----------------------------------------------
+Si usaste el instalador, ya lo hace (a menos que desmarcaras la opcion).
+
+Si no, haz doble clic en instalar_en_inicio.bat, que esta en esta misma
+carpeta.
+
+
+VOCES EN CASTELLANO
+-------------------
+Windows trae Helena y Pablo. Para voces mucho mejores:
+Configuracion > Hora e idioma > Voz > Agregar voces
+y elige las voces naturales de espanol.
+
+Dentro de VozClip, Control + Alt + V cambia de voz y te dice cual has
+puesto.
+
+
+SI WINDOWS DEFENDER SE QUEJA
+----------------------------
+Puede pasar: el programa no esta firmado digitalmente, y Defender
+desconfia de los ejecutables sin firma aunque sean inofensivos.
+Pulsa "Mas informacion" y luego "Ejecutar de todas formas".
+
+
+Codigo fuente y novedades:
+https://github.com/Gisleno-bit/vozclip
+
+Licencia MIT. Uso libre.

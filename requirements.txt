@@ -1,0 +1,8 @@
+# Dependencias de ejecución de VozClip
+pyperclip>=1.8          # leer y escribir el portapapeles
+pynput>=1.7             # atajos globales de teclado (no requiere administrador)
+python-docx>=1.1        # leer documentos .docx de Word
+pypdf>=4.0              # leer archivos .pdf
+pywin32>=306; sys_platform == 'win32'   # acceso a las voces SAPI5 de Windows
+vosk>=0.3.45            # reconocimiento de voz offline (dictado)
+sounddevice>=0.4.6      # captura de micrófono sin depender de numpy

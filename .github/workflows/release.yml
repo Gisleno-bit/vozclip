@@ -1,0 +1,123 @@
+name: Release
+
+# ===========================================================================
+# Compila VozClip para Windows y publica la release. Se lanza SOLO con cada
+# push a main: lee la versión de pyproject.toml y crea (o actualiza) la
+# release v<versión> con el ZIP, el instalador y los dos ejecutables. No hay
+# que crear etiquetas a mano.
+#
+# La descarga queda en una URL fija:
+#   https://github.com/Gisleno-bit/vozclip/releases/latest/download/VozClip-Windows.zip
+#
+# Este archivo se mantiene corto a propósito: la lógica vive en scripts/,
+# que viaja con el código y se prueba con pytest. Aquí solo se llama.
+# ===========================================================================
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Compilar y publicar
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # El Python del tool cache trae a veces un Tcl/Tk incompleto. Si
+      # falla, se instala el Python oficial: un PyInstaller con Tcl roto
+      # produce un .exe que no abre ninguna ventana.
+      - name: Comprobar Tcl/Tk
+        id: tk
+        continue-on-error: true
+        run: python -c "import tkinter; r=tkinter.Tk(); r.withdraw(); r.destroy()"
+
+      - name: Plan B si Tcl/Tk falla
+        if: steps.tk.outcome == 'failure'
+        shell: pwsh
+        run: |
+          choco install python312 -y --no-progress --params "/InstallDir:C:\PythonBuild"
+          "C:\PythonBuild" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          "C:\PythonBuild\Scripts" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Verificar que el repositorio está al día
+        run: python scripts/verificar_repo.py
+
+      - name: Leer la versión
+        id: version
+        shell: bash
+        run: echo "v=$(python scripts/version.py)" >> "$GITHUB_OUTPUT"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Compilar
+        run: python scripts/build_exe.py
+
+      - name: Descargar el modelo de voz
+        continue-on-error: true
+        run: python scripts/descargar_modelo.py --destino modelos
+
+      - name: Verificar el ejecutable compilado
+        run: python scripts/verificar_binario.py dist/VozClip-Diagnostico.exe dist/VozClip.exe
+
+      - name: Armar el paquete
+        run: python scripts/empaquetar.py
+
+      - name: Construir el instalador
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "C:\Program Files (x86)\Inno Setup 6\ISCC.exe")) {
+            choco install innosetup -y --no-progress
+          }
+          if (-not (Test-Path modelos)) { New-Item -ItemType Directory -Path modelos | Out-Null }
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\VozClip.iss
+
+      - name: Subir artefactos
+        uses: actions/upload-artifact@v4
+        with:
+          name: VozClip-Windows-${{ steps.version.outputs.v }}
+          path: |
+            VozClip-Windows.zip
+            installer/salida/*.exe
+            dist/VozClip.exe
+            dist/VozClip-Diagnostico.exe
+          retention-days: 90
+          if-no-files-found: error
+
+      # La release se crea con la etiqueta v<versión>; si ya existía, se
+      # actualizan los archivos. No hay que etiquetar a mano.
+      - name: Publicar la release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.v }}
+          name: VozClip ${{ steps.version.outputs.v }}
+          generate_release_notes: true
+          files: |
+            VozClip-Windows.zip
+            installer/salida/*.exe
+            dist/VozClip.exe
+            dist/VozClip-Diagnostico.exe
+          body: |
+            ## Descarga
+
+            **Sin instalar nada:** descarga `VozClip-Windows.zip`, descomprímelo
+            y haz doble clic en `VozClip.exe`. Al abrirse te saluda por voz y
+            dice la versión.
+
+            **Con instalador:** `VozClip-Instalador.exe`. Crea el acceso directo
+            en el escritorio y no pide permisos de administrador.
+
+            Si algo no funciona, `VozClip-Diagnostico.exe` dice por voz y por
+            pantalla qué falta.

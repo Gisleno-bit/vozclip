@@ -1,0 +1,29 @@
+# Cómo trata Git los saltos de línea de cada tipo de archivo.
+#
+# Git Bash en Windows viene con core.autocrlf=true: al hacer commit
+# convierte CRLF en LF. Eso dejaba los .bat del repositorio con saltos de
+# Linux, y cmd se pierde con los `goto` cuando un .bat tiene LF suelto:
+# el instalador podía fallar de formas raras.
+#
+# Aquí se fija por archivo, y deja de depender de la configuración de cada
+# ordenador.
+
+# Por defecto, Git normaliza a LF dentro del repositorio
+* text=auto
+
+# Los .bat SIEMPRE con saltos de Windows, en el repositorio y al sacarlos
+*.bat text eol=crlf
+
+# Estos siempre con LF, aunque se editen en Windows
+*.py text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+
+# Binarios: que Git no toque nada
+*.png binary
+*.ico binary
+*.zip binary
+*.docx binary
+*.odt binary
+*.mdl binary
