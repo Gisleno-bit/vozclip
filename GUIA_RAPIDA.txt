@@ -1,0 +1,193 @@
+VOZCLIP ESCRITOR - GUIA RAPIDA
+==============================
+
+Este archivo esta en texto plano a proposito, para poder oirlo comodamente
+con Control + Alt + L despues de copiarlo, o abrirlo con Control + Alt + O.
+
+
+LO PRIMERO
+----------
+Abre VozClip.exe. Te saluda en voz alta: "VozClip Escritor en marcha".
+Si no oyes nada, abre VozClip-Diagnostico.exe: te dira que falta.
+
+Pulsa Control + Alt + H en cualquier momento y te lee todos los atajos.
+
+
+DICTAR POR VOZ
+--------------
+F1 empieza a escuchar. Suena un pitido corto: a partir de ahi, habla.
+F1 otra vez para terminar. El texto se escribe donde este el cursor.
+
+Si estas dentro de una plantilla, el dictado respeta la sangria: si dices
+"punto y aparte" en mitad de un dialogo de cine, la linea nueva sale
+alineada con las demas.
+
+Signos que puedes decir mientras hablas: coma, punto, punto y seguido,
+punto y aparte, punto y coma, dos puntos, raya, abre parentesis, cierra
+parentesis, abrir interrogacion, cerrar interrogacion, abrir exclamacion,
+cerrar exclamacion, comillas, puntos suspensivos, nueva linea.
+
+El modelo de voz viene YA INCLUIDO en la descarga, en la carpeta
+"modelos" junto al programa. No hay que instalar nada: pulsa F1 y dicta.
+
+Si alguna vez el dictado dice que falta el modelo, haz doble clic en
+instalar_modelos.bat: lo descarga y te lo cuenta en voz alta.
+
+Y si prefieres bajarlo a mano:
+  https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
+Descomprimelo y deja la carpeta vosk-model-small-es-0.42 en
+C:\Users\Public\VozClip\modelos (sin acentos en la ruta: la libreria de
+voz no los soporta), o en una carpeta "modelos" junto a VozClip.exe.
+
+Si mueves el programa de carpeta, llevate tambien "modelos".
+
+
+LOS CINCO DE TODOS LOS DIAS
+---------------------------
+Estan en las teclas de funcion, sin modificadores: una sola tecla, sin
+pensar y con una mano.
+
+F1 ... GRABAR: empezar o parar el dictado por voz.
+F2 ... NUEVO PARRAFO: salto y sangria de parrafo.
+F3 ... NUEVO DIALOGO: dos espacios de sangria (0,63 cm), la raya
+       pegada y el cursor detras. Nada mas, en ninguna plantilla.
+F4 ... LEER ULTIMO PARRAFO: lo que acabas de escribir o dictar.
+F5 ... LEER TEXTO ENTERO.
+F9 ... CORREGIR UNA PALABRA: pulsa, di "cambia casa por cosa", pulsa.
+       Solo cambia esa palabra. "leelo" numera el parrafo si no sabes
+       cual salio mal; luego "la tres por cosa". Escape cancela.
+
+En la ventana estan tambien como botones, en azul con borde blanco.
+Guardar esta en verde. Importar y exportar, en naranja.
+
+
+TU FORMATO DE NOVELA
+--------------------
+La plantilla "novela con dialogos" es tu formato:
+
+  DIALOGOS: raya al margen, sangria izquierda 0,63 con sangria
+            francesa 0,63, posterior 18 puntos, interlineado minimo.
+  NARRADOR: primera linea 1,25, posterior 18 puntos, justificado.
+
+En el editor esas sangrias se ven como espacios aproximados, porque el
+texto plano no tiene centimetros. El formato de VERDAD se aplica al
+exportar a Word con Control + Alt + Mayusculas + E: ahi salen los
+centimetros y los puntos exactos.
+
+
+TODOS LOS ATAJOS
+----------------
+
+LOS SEIS DIARIOS
+F1 ........................... grabar (dictado)
+F2 ........................... nuevo parrafo
+F3 ........................... nuevo dialogo
+F4 ........................... leer ultimo parrafo
+F5 ........................... leer texto entero
+F9 ........................... corregir una palabra por voz
+Escape ....................... cancelar la correccion
+
+ESCRIBIR
+Control + Alt + G ............ insertar plantilla de guion
+Control + Alt + N ............ cambiar de plantilla
+Control + Alt + T ............ siguiente hueco de la plantilla
+Control + Alt + I ............ aplicar sangria
+Control + Alt + Mayus + I .... quitar sangria
+Control + Alt + Intro ........ nueva linea
+
+ARCHIVOS
+Control + Alt + O ............ importar: abrir un archivo
+Control + Alt + E ............ exportar todo
+Control + Alt + Mayus + E .... exportar a Word (.docx) con tu formato
+Control + Alt + Mayus + L .... exportar a LibreOffice (.odt) con tu formato
+Control + Alt + D ............ guardar
+Control + Alt + S ............ guardar como
+
+CONFIGURACION
+Control + Alt + U ............ importar una configuracion guardada
+Control + Alt + Y ............ exportar la configuracion actual
+
+ESCUCHAR   (las cuatro teclas van juntas en el teclado: J K L A)
+Control + Alt + J ............ leer la linea actual
+Control + Alt + K ............ leer lo seleccionado
+Control + Alt + L ............ leer el portapapeles
+Control + Alt + A ............ leer el documento entero
+Control + Alt + P ............ pausar o reanudar
+Control + Alt + X ............ parar
+
+VER MEJOR
+Control + Alt + C ............ cambiar de tema: oscuro, alto contraste, claro
+Control + Alt + mas .......... letra mas grande
+Control + Alt + menos ........ letra mas pequena
+Control + Alt + Z ............ modo solo voz: la ventana se reduce al minimo
+
+MOVERSE
+Tabulador .................... pasar de un boton al siguiente
+F6 .......................... saltar entre el editor y los botones
+Alt + 1 al 8 ................. pulsar ese boton directamente
+Flechas arriba y abajo ....... mover el cursor y oir la linea nueva
+
+AJUSTAR
+Control + Alt + flecha arriba . hablar mas rapido
+Control + Alt + flecha abajo .. hablar mas despacio
+Control + Alt + V ............ cambiar de voz
+Control + Alt + M ............ editor propio / aplicacion externa
+Control + Alt + W ............ donde estoy
+Control + Alt + H ............ oir esta lista
+Control + Alt + Q ............ salir (guarda antes)
+
+
+IMPORTAR Y EXPORTAR
+-------------------
+Control + Alt + O abre un archivo dentro de VozClip. Admite texto (.txt,
+.md), texto enriquecido (.rtf) y Word (.docx). Las sangrias se conservan
+tal cual: un guion importado mantiene sus margenes.
+
+Control + Alt + E saca el documento:
+  - En el editor propio, lo copia entero al portapapeles. Desde ahi lo
+    pegas donde quieras con Control + V.
+  - En modo aplicacion externa, lo escribe directamente en el programa
+    que tengas delante.
+
+
+LOS DOS MODOS
+-------------
+MODO EDITOR PROPIO: escribes dentro de VozClip. Es el fiable.
+MODO APLICACION EXTERNA: escribe en Word, el navegador o donde estes.
+Se cambia con Control + Alt + M, y el programa te dice en cual estas y
+en que ventana va a escribir.
+
+
+VER MEJOR: LAS TRES OPCIONES
+----------------------------
+Control + Alt + C rota entre tres temas:
+
+  OSCURO ........... texto claro sobre fondo muy oscuro. Es el que menos
+                     cansa en sesiones largas.
+  ALTO CONTRASTE ... negro puro con amarillo y blanco puros. El maximo
+                     contraste posible, para resto visual muy bajo.
+  CLARO ............ fondo claro, para quien lo prefiera.
+
+Control + Alt + mas y Control + Alt + menos cambian el tamano de la letra
+del guion, de 10 a 42 puntos. Los botones crecen tambien, pero solo hasta
+cierto punto: si crecieran sin limite acabarian tapando el texto.
+
+El cursor no parpadea, a proposito: un elemento moviendose todo el rato
+cansa la vista.
+
+Control + Alt + Z activa el modo solo voz: la ventana se reduce a una
+franja pequena y todo sigue funcionando igual por teclado y por voz.
+
+
+DONDE SE GUARDAN LOS GUIONES
+----------------------------
+En tu carpeta Documentos, dentro de una carpeta llamada VozClip.
+Los nombres llevan la fecha y la hora.
+
+
+SI ALGO NO FUNCIONA
+-------------------
+- Pulsa Control + Alt + H. Si te contesta, el programa esta vivo.
+- Si no contesta, abre VozClip-Diagnostico.exe.
+- Cada arranque deja un registro en la carpeta AppData, dentro de
+  VozClip, en un archivo llamado ultimo_arranque.log.
