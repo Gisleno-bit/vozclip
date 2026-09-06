@@ -1,0 +1,12 @@
+# Dictado con faster-whisper (OPCIONAL, no va en el .exe estándar)
+#
+#   pip install -r requirements-whisper.txt
+#
+# Con GPU NVIDIA hacen falta además las librerías CUDA de NVIDIA. La forma
+# que no requiere instalar CUDA a mano:
+#
+#   pip install nvidia-cublas-cu12 nvidia-cudnn-cu12
+#
+# y, en Windows, tener las DLL en el PATH (el paquete las deja en
+# site-packages\nvidia\*\bin). Ver README, sección "Dictado con Whisper".
+faster-whisper>=1.1

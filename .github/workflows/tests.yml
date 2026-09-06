@@ -1,0 +1,63 @@
+name: Tests
+
+# Corto y estable a propósito: la lógica va en scripts/ y en los tests.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Instalar display virtual y audio (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb libportaudio2
+
+      - name: Verificar que el repositorio está al día
+        run: python scripts/verificar_repo.py
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check src tests scripts
+
+      - name: Tests (Linux)
+        if: runner.os == 'Linux'
+        env:
+          VOZCLIP_MOTOR: falso
+        run: xvfb-run -a pytest -q -rs
+
+      - name: Tests (Windows)
+        if: runner.os == 'Windows'
+        env:
+          VOZCLIP_MOTOR: falso
+        run: pytest -q -rs
+
+      - name: Prueba de humo y autotest (Linux)
+        if: runner.os == 'Linux'
+        env:
+          VOZCLIP_MOTOR: falso
+          PYTHONPATH: src
+        run: |
+          xvfb-run -a python pruebas_manuales/humo.py
+          xvfb-run -a python -m vozclip --autotest

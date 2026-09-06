@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vozclip"
+version = "2.12.0"
+description = "Editor de guiones parlante con dictado por voz, HUD y plantillas, para escritores sin visión"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Gisleno-bit" }]
+keywords = ["accesibilidad", "tts", "voz", "ciegos", "nvda", "sapi5"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Win32 (MS Windows)",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: Spanish",
+  "Programming Language :: Python :: 3",
+  "Topic :: Adaptive Technologies",
+]
+
+dependencies = [
+  "pyperclip>=1.8",
+  "pynput>=1.7",
+  "python-docx>=1.1",
+  "pypdf>=4.0",
+  "vosk>=0.3.45",
+  "sounddevice>=0.4.6",
+  "pywin32>=306; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5", "pyinstaller>=6.6"]
+
+[project.scripts]
+vozclip = "vozclip.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Gisleno-bit/vozclip"
+Issues = "https://github.com/Gisleno-bit/vozclip/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]
