@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Subir VozClip a GitHub</title>
+<style>
+  body { font-family: Segoe UI, sans-serif; max-width: 52em; margin: 2em auto;
+         padding: 0 1em; background: #111; color: #eee; font-size: 1.15em; line-height: 1.5; }
+  h1 { color: #ffc857; }
+  h2 { margin-top: 2em; border-bottom: 2px solid #333; padding-bottom: .3em; }
+  ol { padding-left: 1.2em; }
+  li { margin: 1.6em 0; }
+  .boton { display: inline-block; padding: .8em 1.4em; font-size: 1.1em; font-weight: bold;
+            border-radius: .5em; text-decoration: none; color: #fff; border: 3px solid #fff; }
+  .crear { background: #1d4ed8; }
+  .borrar { background: #b91c1c; }
+  .boton:focus, .boton:hover { outline: 4px solid #ffc857; }
+  code { background: #222; padding: .1em .4em; border-radius: .3em; font-size: .95em; }
+  p { margin: .4em 0 0; color: #bbb; }
+  .nota { background: #1c2030; padding: 1em; border-radius: .5em; margin-top: 2em; }
+</style>
+</head>
+<body>
+<h1>Subir VozClip a GitHub, sin copiar ni pegar</h1>
+
+<p>Cada botón abre GitHub con el archivo ya escrito. Tú solo pulsas
+<strong>Commit changes</strong>. Hazlo en este orden, con la sesión de
+GitHub iniciada.</p>
+
+<h2>1. Sube el código</h2>
+<p>En <a href="https://github.com/Gisleno-bit/vozclip" target="_blank" rel="noopener">
+el repositorio</a>: <strong>Add file → Upload files</strong>, arrastra el
+<em>contenido</em> de la carpeta <code>vozclip</code> (no la carpeta en sí) y
+pulsa Commit. Los archivos que empiezan por punto no llegan así: para eso
+están los botones de abajo.</p>
+
+<h2>2. Borra los workflows viejos</h2>
+<p><strong>Esto primero.</strong> Mientras existan, siguen ejecutándose por su
+cuenta y ponen la X roja aunque todo lo demás vaya bien. Si alguno dice que
+no existe, ya está borrado: pasa al siguiente.</p>
+<ol>
+      <li>
+        <a class="boton borrar" href="https://github.com/Gisleno-bit/vozclip/blob/main/.github/workflows/build-windows.yml"
+           target="_blank" rel="noopener">
+          Borrar <code>.github/workflows/build-windows.yml</code>
+        </a>
+        <p>Se abre el archivo viejo. Arriba a la derecha, el icono de la
+           <strong>papelera</strong>, y <strong>Commit changes</strong>.
+           Si dice que no existe, ya está: no hay nada que borrar.</p>
+      </li>
+      <li>
+        <a class="boton borrar" href="https://github.com/Gisleno-bit/vozclip/blob/main/.github/workflows/ci.yml"
+           target="_blank" rel="noopener">
+          Borrar <code>.github/workflows/ci.yml</code>
+        </a>
+        <p>Se abre el archivo viejo. Arriba a la derecha, el icono de la
+           <strong>papelera</strong>, y <strong>Commit changes</strong>.
+           Si dice que no existe, ya está: no hay nada que borrar.</p>
+      </li>
+</ol>
+
+<h2>3. Crea los workflows nuevos</h2>
+<ol>
+      <li>
+        <a class="boton crear" href="https://github.com/Gisleno-bit/vozclip/new/main?filename=.github%2Fworkflows%2Frelease.yml&amp;value=name%3A%20Release%0A%0A%23%20%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A%23%20Compila%20VozClip%20para%20Windows%20y%20publica%20la%20release.%20Se%20lanza%20SOLO%20con%20cada%0A%23%20push%20a%20main%3A%20lee%20la%20versi%C3%B3n%20de%20pyproject.toml%20y%20crea%20%28o%20actualiza%29%20la%0A%23%20release%20v%3Cversi%C3%B3n%3E%20con%20el%20ZIP%2C%20el%20instalador%20y%20los%20dos%20ejecutables.%20No%20hay%0A%23%20que%20crear%20etiquetas%20a%20mano.%0A%23%0A%23%20La%20descarga%20queda%20en%20una%20URL%20fija%3A%0A%23%20%20%20https%3A%2F%2Fgithub.com%2FGisleno-bit%2Fvozclip%2Freleases%2Flatest%2Fdownload%2FVozClip-Windows.zip%0A%23%0A%23%20Este%20archivo%20se%20mantiene%20corto%20a%20prop%C3%B3sito%3A%20la%20l%C3%B3gica%20vive%20en%20scripts%2F%2C%0A%23%20que%20viaja%20con%20el%20c%C3%B3digo%20y%20se%20prueba%20con%20pytest.%20Aqu%C3%AD%20solo%20se%20llama.%0A%23%20%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A%0Aon%3A%0A%20%20push%3A%0A%20%20%20%20branches%3A%20%5Bmain%5D%0A%20%20workflow_dispatch%3A%0A%0Apermissions%3A%0A%20%20contents%3A%20write%0A%0Ajobs%3A%0A%20%20release%3A%0A%20%20%20%20name%3A%20Compilar%20y%20publicar%0A%20%20%20%20runs-on%3A%20windows-latest%0A%0A%20%20%20%20steps%3A%0A%20%20%20%20%20%20-%20uses%3A%20actions%2Fcheckout%40v4%0A%0A%20%20%20%20%20%20-%20uses%3A%20actions%2Fsetup-python%40v5%0A%20%20%20%20%20%20%20%20with%3A%0A%20%20%20%20%20%20%20%20%20%20python-version%3A%20%223.12%22%0A%0A%20%20%20%20%20%20%23%20El%20Python%20del%20tool%20cache%20trae%20a%20veces%20un%20Tcl%2FTk%20incompleto.%20Si%0A%20%20%20%20%20%20%23%20falla%2C%20se%20instala%20el%20Python%20oficial%3A%20un%20PyInstaller%20con%20Tcl%20roto%0A%20%20%20%20%20%20%23%20produce%20un%20.exe%20que%20no%20abre%20ninguna%20ventana.%0A%20%20%20%20%20%20-%20name%3A%20Comprobar%20Tcl%2FTk%0A%20%20%20%20%20%20%20%20id%3A%20tk%0A%20%20%20%20%20%20%20%20continue-on-error%3A%20true%0A%20%20%20%20%20%20%20%20run%3A%20python%20-c%20%22import%20tkinter%3B%20r%3Dtkinter.Tk%28%29%3B%20r.withdraw%28%29%3B%20r.destroy%28%29%22%0A%0A%20%20%20%20%20%20-%20name%3A%20Plan%20B%20si%20Tcl%2FTk%20falla%0A%20%20%20%20%20%20%20%20if%3A%20steps.tk.outcome%20%3D%3D%20%27failure%27%0A%20%20%20%20%20%20%20%20shell%3A%20pwsh%0A%20%20%20%20%20%20%20%20run%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20choco%20install%20python312%20-y%20--no-progress%20--params%20%22%2FInstallDir%3AC%3A%5CPythonBuild%22%0A%20%20%20%20%20%20%20%20%20%20%22C%3A%5CPythonBuild%22%20%7C%20Out-File%20-FilePath%20%24env%3AGITHUB_PATH%20-Append%20-Encoding%20utf8%0A%20%20%20%20%20%20%20%20%20%20%22C%3A%5CPythonBuild%5CScripts%22%20%7C%20Out-File%20-FilePath%20%24env%3AGITHUB_PATH%20-Append%20-Encoding%20utf8%0A%0A%20%20%20%20%20%20-%20name%3A%20Verificar%20que%20el%20repositorio%20est%C3%A1%20al%20d%C3%ADa%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fverificar_repo.py%0A%0A%20%20%20%20%20%20-%20name%3A%20Leer%20la%20versi%C3%B3n%0A%20%20%20%20%20%20%20%20id%3A%20version%0A%20%20%20%20%20%20%20%20shell%3A%20bash%0A%20%20%20%20%20%20%20%20run%3A%20echo%20%22v%3D%24%28python%20scripts%2Fversion.py%29%22%20%3E%3E%20%22%24GITHUB_OUTPUT%22%0A%0A%20%20%20%20%20%20-%20name%3A%20Instalar%20dependencias%0A%20%20%20%20%20%20%20%20run%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20python%20-m%20pip%20install%20--upgrade%20pip%0A%20%20%20%20%20%20%20%20%20%20pip%20install%20-r%20requirements.txt%20pyinstaller%0A%0A%20%20%20%20%20%20-%20name%3A%20Compilar%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fbuild_exe.py%0A%0A%20%20%20%20%20%20-%20name%3A%20Descargar%20el%20modelo%20de%20voz%0A%20%20%20%20%20%20%20%20continue-on-error%3A%20true%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fdescargar_modelo.py%20--destino%20modelos%0A%0A%20%20%20%20%20%20-%20name%3A%20Verificar%20el%20ejecutable%20compilado%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fverificar_binario.py%20dist%2FVozClip-Diagnostico.exe%20dist%2FVozClip.exe%0A%0A%20%20%20%20%20%20-%20name%3A%20Armar%20el%20paquete%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fempaquetar.py%0A%0A%20%20%20%20%20%20-%20name%3A%20Construir%20el%20instalador%0A%20%20%20%20%20%20%20%20shell%3A%20pwsh%0A%20%20%20%20%20%20%20%20run%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20if%20%28-not%20%28Test-Path%20%22C%3A%5CProgram%20Files%20%28x86%29%5CInno%20Setup%206%5CISCC.exe%22%29%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20choco%20install%20innosetup%20-y%20--no-progress%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20if%20%28-not%20%28Test-Path%20modelos%29%29%20%7B%20New-Item%20-ItemType%20Directory%20-Path%20modelos%20%7C%20Out-Null%20%7D%0A%20%20%20%20%20%20%20%20%20%20%26%20%22C%3A%5CProgram%20Files%20%28x86%29%5CInno%20Setup%206%5CISCC.exe%22%20installer%5CVozClip.iss%0A%0A%20%20%20%20%20%20-%20name%3A%20Subir%20artefactos%0A%20%20%20%20%20%20%20%20uses%3A%20actions%2Fupload-artifact%40v4%0A%20%20%20%20%20%20%20%20with%3A%0A%20%20%20%20%20%20%20%20%20%20name%3A%20VozClip-Windows-%24%7B%7B%20steps.version.outputs.v%20%7D%7D%0A%20%20%20%20%20%20%20%20%20%20path%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20VozClip-Windows.zip%0A%20%20%20%20%20%20%20%20%20%20%20%20installer%2Fsalida%2F%2A.exe%0A%20%20%20%20%20%20%20%20%20%20%20%20dist%2FVozClip.exe%0A%20%20%20%20%20%20%20%20%20%20%20%20dist%2FVozClip-Diagnostico.exe%0A%20%20%20%20%20%20%20%20%20%20retention-days%3A%2090%0A%20%20%20%20%20%20%20%20%20%20if-no-files-found%3A%20error%0A%0A%20%20%20%20%20%20%23%20La%20release%20se%20crea%20con%20la%20etiqueta%20v%3Cversi%C3%B3n%3E%3B%20si%20ya%20exist%C3%ADa%2C%20se%0A%20%20%20%20%20%20%23%20actualizan%20los%20archivos.%20No%20hay%20que%20etiquetar%20a%20mano.%0A%20%20%20%20%20%20-%20name%3A%20Publicar%20la%20release%0A%20%20%20%20%20%20%20%20uses%3A%20softprops%2Faction-gh-release%40v2%0A%20%20%20%20%20%20%20%20with%3A%0A%20%20%20%20%20%20%20%20%20%20tag_name%3A%20v%24%7B%7B%20steps.version.outputs.v%20%7D%7D%0A%20%20%20%20%20%20%20%20%20%20name%3A%20VozClip%20%24%7B%7B%20steps.version.outputs.v%20%7D%7D%0A%20%20%20%20%20%20%20%20%20%20generate_release_notes%3A%20true%0A%20%20%20%20%20%20%20%20%20%20files%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20VozClip-Windows.zip%0A%20%20%20%20%20%20%20%20%20%20%20%20installer%2Fsalida%2F%2A.exe%0A%20%20%20%20%20%20%20%20%20%20%20%20dist%2FVozClip.exe%0A%20%20%20%20%20%20%20%20%20%20%20%20dist%2FVozClip-Diagnostico.exe%0A%20%20%20%20%20%20%20%20%20%20body%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%23%20Descarga%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%2A%2ASin%20instalar%20nada%3A%2A%2A%20descarga%20%60VozClip-Windows.zip%60%2C%20descompr%C3%ADmelo%0A%20%20%20%20%20%20%20%20%20%20%20%20y%20haz%20doble%20clic%20en%20%60VozClip.exe%60.%20Al%20abrirse%20te%20saluda%20por%20voz%20y%0A%20%20%20%20%20%20%20%20%20%20%20%20dice%20la%20versi%C3%B3n.%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%2A%2ACon%20instalador%3A%2A%2A%20%60VozClip-Instalador.exe%60.%20Crea%20el%20acceso%20directo%0A%20%20%20%20%20%20%20%20%20%20%20%20en%20el%20escritorio%20y%20no%20pide%20permisos%20de%20administrador.%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20Si%20algo%20no%20funciona%2C%20%60VozClip-Diagnostico.exe%60%20dice%20por%20voz%20y%20por%0A%20%20%20%20%20%20%20%20%20%20%20%20pantalla%20qu%C3%A9%20falta.%0A"
+           target="_blank" rel="noopener">
+          Crear <code>.github/workflows/release.yml</code>
+        </a>
+        <p>Se abre GitHub con el archivo ya escrito. Baja y pulsa
+           <strong>Commit changes</strong>. Nada más.</p>
+      </li>
+      <li>
+        <a class="boton crear" href="https://github.com/Gisleno-bit/vozclip/new/main?filename=.github%2Fworkflows%2Ftests.yml&amp;value=name%3A%20Tests%0A%0A%23%20Corto%20y%20estable%20a%20prop%C3%B3sito%3A%20la%20l%C3%B3gica%20va%20en%20scripts%2F%20y%20en%20los%20tests.%0A%0Aon%3A%0A%20%20push%3A%0A%20%20%20%20branches%3A%20%5Bmain%5D%0A%20%20pull_request%3A%0A%20%20%20%20branches%3A%20%5Bmain%5D%0A%20%20workflow_dispatch%3A%0A%0Ajobs%3A%0A%20%20tests%3A%0A%20%20%20%20name%3A%20Tests%20%28%24%7B%7B%20matrix.os%20%7D%7D%2C%20Python%20%24%7B%7B%20matrix.python%20%7D%7D%29%0A%20%20%20%20runs-on%3A%20%24%7B%7B%20matrix.os%20%7D%7D%0A%20%20%20%20strategy%3A%0A%20%20%20%20%20%20fail-fast%3A%20false%0A%20%20%20%20%20%20matrix%3A%0A%20%20%20%20%20%20%20%20os%3A%20%5Bubuntu-latest%2C%20windows-latest%5D%0A%20%20%20%20%20%20%20%20python%3A%20%5B%223.11%22%2C%20%223.12%22%5D%0A%0A%20%20%20%20steps%3A%0A%20%20%20%20%20%20-%20uses%3A%20actions%2Fcheckout%40v4%0A%0A%20%20%20%20%20%20-%20uses%3A%20actions%2Fsetup-python%40v5%0A%20%20%20%20%20%20%20%20with%3A%0A%20%20%20%20%20%20%20%20%20%20python-version%3A%20%24%7B%7B%20matrix.python%20%7D%7D%0A%0A%20%20%20%20%20%20-%20name%3A%20Instalar%20display%20virtual%20y%20audio%20%28Linux%29%0A%20%20%20%20%20%20%20%20if%3A%20runner.os%20%3D%3D%20%27Linux%27%0A%20%20%20%20%20%20%20%20run%3A%20sudo%20apt-get%20update%20%26%26%20sudo%20apt-get%20install%20-y%20xvfb%20libportaudio2%0A%0A%20%20%20%20%20%20-%20name%3A%20Verificar%20que%20el%20repositorio%20est%C3%A1%20al%20d%C3%ADa%0A%20%20%20%20%20%20%20%20run%3A%20python%20scripts%2Fverificar_repo.py%0A%0A%20%20%20%20%20%20-%20name%3A%20Instalar%20dependencias%0A%20%20%20%20%20%20%20%20run%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20python%20-m%20pip%20install%20--upgrade%20pip%0A%20%20%20%20%20%20%20%20%20%20pip%20install%20-r%20requirements-dev.txt%0A%0A%20%20%20%20%20%20-%20name%3A%20Lint%0A%20%20%20%20%20%20%20%20run%3A%20ruff%20check%20src%20tests%20scripts%0A%0A%20%20%20%20%20%20-%20name%3A%20Tests%20%28Linux%29%0A%20%20%20%20%20%20%20%20if%3A%20runner.os%20%3D%3D%20%27Linux%27%0A%20%20%20%20%20%20%20%20env%3A%0A%20%20%20%20%20%20%20%20%20%20VOZCLIP_MOTOR%3A%20falso%0A%20%20%20%20%20%20%20%20run%3A%20xvfb-run%20-a%20pytest%20-q%20-rs%0A%0A%20%20%20%20%20%20-%20name%3A%20Tests%20%28Windows%29%0A%20%20%20%20%20%20%20%20if%3A%20runner.os%20%3D%3D%20%27Windows%27%0A%20%20%20%20%20%20%20%20env%3A%0A%20%20%20%20%20%20%20%20%20%20VOZCLIP_MOTOR%3A%20falso%0A%20%20%20%20%20%20%20%20run%3A%20pytest%20-q%20-rs%0A%0A%20%20%20%20%20%20-%20name%3A%20Prueba%20de%20humo%20y%20autotest%20%28Linux%29%0A%20%20%20%20%20%20%20%20if%3A%20runner.os%20%3D%3D%20%27Linux%27%0A%20%20%20%20%20%20%20%20env%3A%0A%20%20%20%20%20%20%20%20%20%20VOZCLIP_MOTOR%3A%20falso%0A%20%20%20%20%20%20%20%20%20%20PYTHONPATH%3A%20src%0A%20%20%20%20%20%20%20%20run%3A%20%7C%0A%20%20%20%20%20%20%20%20%20%20xvfb-run%20-a%20python%20pruebas_manuales%2Fhumo.py%0A%20%20%20%20%20%20%20%20%20%20xvfb-run%20-a%20python%20-m%20vozclip%20--autotest%0A"
+           target="_blank" rel="noopener">
+          Crear <code>.github/workflows/tests.yml</code>
+        </a>
+        <p>Se abre GitHub con el archivo ya escrito. Baja y pulsa
+           <strong>Commit changes</strong>. Nada más.</p>
+      </li>
+</ol>
+
+<h2>4. Espera y descarga</h2>
+<p>Con el paso 1 y 2 hechos, la pestaña <strong>Actions</strong> muestra
+<em>Release</em> en marcha. En unos 10 minutos, la descarga queda aquí,
+siempre en la misma dirección:</p>
+<p><a class="boton crear"
+      href="https://github.com/Gisleno-bit/vozclip/releases/latest/download/VozClip-Windows.zip">
+   Descargar VozClip-Windows.zip (última versión)</a></p>
+
+<div class="nota">
+<strong>Si un botón de crear dice que el archivo ya existe:</strong> es que ya
+lo subiste. Abre el archivo en GitHub, pulsa el lápiz, borra todo, pega el
+contenido del que está en la carpeta <code>.github/workflows</code> del ZIP,
+y Commit.
+</div>
+</body>
+</html>

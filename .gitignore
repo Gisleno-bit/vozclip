@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+*.spec
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Pruebas y herramientas
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuración local del usuario (no debe subirse)
+config.local.json
+
+# El modelo de voz lo descarga la compilación: son 46 MB y no van al
+# repositorio. Se genera con scripts/descargar_modelo.py
+modelos/
